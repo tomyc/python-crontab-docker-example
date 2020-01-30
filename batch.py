@@ -8,40 +8,49 @@ from scheduler.job import JobController
 __author__ = 'Shinichi Nakagawa'
 
 
-# Docker ImageのTimezoneがUTCなので注意！
+# Uwaga: Strefa czasowa Docker Image to UTC!
 @JobController.run("20 15 * * 5")
 def notice_tmr_club():
     """
-    タモリ倶楽部の時間だお(東京)
+    Tamori Club Time (Tokio)
     :return: None
     """
-    logging.info("タモリ倶楽部はじまるよ！！！")
+    logging.info("Tamori Club - zaczyna się!")
 
 
-# Docker ImageのTimezoneがUTCなので注意！(大切なので2回言いました)
+# Uwaga: Strefa czasowa Docker Image to UTC! (Mówiłem ci dwa razy, bo to ważne)
 @JobController.run("00 9 * * *")
 def notice_baseball():
     """
-    やきうの時間を教えるお
+    Czas na kopaninkę
     :return: None
     """
-    logging.info("やきうの時間だあああ！！！！")
+    logging.info("Och, czas na kopaninkę!")
+    
+@JobController.run("40 20 * * *")
+def notice_noc():
+    """
+    Czas na sen
+    :return: None
+    """
+    logging.info("Zmiataj do łóżka!")
+    
 
 
 def main():
     """
-    crontabを動かすmethod
+    metoda uruchomienia crontab
     :return: None
     """
-    # ログ設定(Infoレベル、フォーマット、タイムスタンプ)
+    # Ustawienia dziennika (poziom informacji, format, znacznik czasu)
     logging.basicConfig(
         level=logging.INFO,
         format="time:%(asctime)s.%(msecs)03d\tprocess:%(process)d" + "\tmessage:%(message)s",
         datefmt="%Y-%m-%d %H:%M:%S"
     )
 
-    # crontabで実行したいジョブを登録
-    jobs = [notice_tmr_club, notice_baseball]
+    # zarejestruj zadanie, które chcesz wykonać za pomocą crontab
+    jobs = [notice_tmr_club, notice_baseball, notice_noc]
 
     # multi process running
     p = Pool(len(jobs))

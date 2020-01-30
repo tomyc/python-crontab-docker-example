@@ -13,13 +13,13 @@ __author__ = 'Shinichi Nakagawa'
 
 class JobController(object):
     """
-    ジョブ実行Controller
+    Kontroler wykonywania pracy
     """
 
     @classmethod
     def run(cls, crontab):
         """
-        処理実行
+        Przetwarzanie wykonania
         :param crontab: job schedule
         """
         def receive_func(job):
@@ -47,7 +47,7 @@ class JobController(object):
 
 class JobSettings(object):
     """
-    出力設定
+    Ustawienia początkowe
     """
 
     def __init__(self, crontab):
@@ -58,7 +58,7 @@ class JobSettings(object):
 
     def schedule(self):
         """
-        次回実行
+        Następne wykonanie zadania
         :return: datetime
         """
         crontab = self._crontab
@@ -66,7 +66,7 @@ class JobSettings(object):
 
     def interval(self):
         """
-        次回実行までの時間
+        Czas do następnego wykonania
         :return: seconds
         """
         crontab = self._crontab

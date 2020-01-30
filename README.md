@@ -1,2 +1,2 @@
 # python-crontab-docker-example
-PythonのcrontabをDockerで使うサンプルです.
+Jest to przykład użycia crontab, Python z Dockerem.
